@@ -97,13 +97,14 @@ contract('Market', ([deployer, seller, buyer]) => {
             let bought
 
             let oldBalance = await web3.eth.getBalance(seller)
-            //oldBalance = await web3.utils.BN(oldBalance)
+            oldBalance = new web3.utils.BN(oldBalance)
 
             bought = await market.buyProduct(1, {from: buyer, value: web3.utils.toWei('1', 'Ether')})
             let newBalance = await web3.eth.getBalance(seller)
-            //newBalance = await web3.utils.BN(oldBalance)
-
-           // assert.notEqual(newBalance, oldBalance , 'They are different')
+            newBalance = new web3.utils.BN(newBalance)
+           const price = bought.logs[0].args.price
+           assert.equal(price, web3.utils.toWei('1', 'Ether') , 'They are not equal')
+            console.log(price.toString())
         })    
     })
 })

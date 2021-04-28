@@ -21,6 +21,14 @@ contract Market {
         bool state
     );
 
+    event PurchasedProduct (
+        uint id,
+        string name,
+        address payable owner,
+        uint price,
+        bool state
+    );
+
     constructor() public {
         name = "G-Market";
     }
@@ -42,6 +50,7 @@ contract Market {
         _product.state = true;
         products[_id] = _product;
         address(_seller).transfer(msg.value);
+        emit PurchasedProduct(_id, _product.name, msg.sender, msg.value, true);
     }
 
 
