@@ -46,6 +46,7 @@ contract Market {
         Product memory _product = products[_id];
         address payable _seller = _product.owner;
         require(_seller != msg.sender);
+        require(msg.value == _product.price);
         _product.owner = msg.sender;
         _product.state = true;
         products[_id] = _product;

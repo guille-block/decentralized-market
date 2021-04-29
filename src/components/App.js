@@ -1,8 +1,50 @@
 import React, { Component } from 'react';
+import Web3 from 'web3'
 import logo from '../logo.png';
 import './App.css';
 
-class App extends Component {
+class App extends React.Component {
+
+  componentDidMount = async () => {
+    await this.loadWeb3()
+    await this.loadBlockchain()
+  }
+
+   loadWeb3 = async () => {
+    if (window.ethereum) { //check if Metamask is installed
+          try {
+              const address = await window.ethereum.enable(); //connect Metamask
+              const obj = {
+                      connectedStatus: true,
+                      status: "",
+                      address: address
+                  }
+                  return obj;
+               
+          } catch (error) {
+              return {
+                  connectedStatus: false,
+                  status: "🦊 Connect to Metamask using the button on the top right."
+              }
+          }
+          
+    } else {
+          return {
+              connectedStatus: false,
+              status: "🦊 You must install Metamask into your browser: https://metamask.io/download.html"
+          }
+        }
+    } 
+  
+
+  loadBlockchain = async () => {
+    //const web3 = window.web3
+    //const account = await web3.eth.getAccounts()
+    //console.log(account)
+  }
+
+
+
   render() {
     return (
       <div>
