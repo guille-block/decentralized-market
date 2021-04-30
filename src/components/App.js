@@ -15,19 +15,15 @@ class App extends React.Component {
   loadBlockchain = async () => {
      if(typeof window.ethereum !== 'undefined') {
           const web3 = new Web3(window.ethereum);
+          window.ethereum.enable()
           const netId = await web3.eth.net.getId()
+          console.log(netId)
           const account = await web3.eth.getAccounts()
           this.setState({account: account[0]})
+          console.log(account[0])
           if(Market.networks[netId]) {
             const market = await web3.eth.Contract(Market.abi, Market.networks[netId].address)
             this.setState({market})
-            const count = await market.methods.productCount().call()
-            this.setState({productCount : count})
-            for(let i=0; i<= count; i++) {
-            const product = market.methods.products().call()
-            this.setState({products: [...this.state.products, product]})
-            }
-            console.log(this.state.products)
           } else {
             alert('connect to a different Blockchain')
           }
@@ -42,9 +38,7 @@ constructor(props){
   super(props) 
     this.state = {
       account: '',
-      loading: true,
-      productCount: 0,
-      products: []
+      loading: true
     }
 }
 
