@@ -52,7 +52,14 @@ createProduct = (name, price) => {
     })
 }
 
-
+productCount = () => {
+  this.setState({loading: true})
+  const cant = this.state.market.methods.productCount().send({from: this.state.account })
+    .once('receipt', (receipt) => {
+      this.setState({ loading: false})
+    })
+    console.log(cant.toString())
+}
 
 
 
@@ -67,6 +74,7 @@ createProduct = (name, price) => {
                 this.state.loading ? <div id = "loader"><p>Loading....</p></div> : <Main createProduct = {this.createProduct}/>
               }
             </main>
+            <button onClick = {() => {this.productCount()}}>Cantidad de productos</button>
           </div>
         </div>
       </div>

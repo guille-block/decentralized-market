@@ -5091,14 +5091,90 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0xe6593cf3b6793653abcba19494c2effb142127affad771a5e4108bdac39c7470": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "state",
+              "type": "bool"
+            }
+          ],
+          "name": "NewProduct",
+          "type": "event"
+        },
+        "0xaad70f16fcdb5b7f23131ae95556e3fc5f478d77b34ce35de223618ff5baf295": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "state",
+              "type": "bool"
+            }
+          ],
+          "name": "PurchasedProduct",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xEa2033609221bA796DB93D3537B7e9d1698329Af",
-      "transactionHash": "0x0ba35ea2b683dad7681cc5a832cb5f5034cd1d86512956adb43089e966e1d958"
+      "address": "0x964026736A96aB5D05F77320C5e9C9D6D92c0185",
+      "transactionHash": "0x98846064222d8d97352a8c121f5fd0e8fc59901cebff2a20f77bb8ed6fd0dfa6"
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2021-04-28T22:28:52.961Z",
+  "updatedAt": "2021-05-01T00:21:05.981Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
