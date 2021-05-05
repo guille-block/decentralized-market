@@ -24,6 +24,14 @@ class App extends React.Component {
           if(Market.networks[netId]) {
             const market = await web3.eth.Contract(Market.abi, Market.networks[netId].address)
             this.setState({market})
+            const count = await market.methods.productCount().call()
+            this.setState({productCount: count.toNumber()})
+            console.log(this.state.productCount)
+            for(var i=0; i<=count; i++){
+              const product = await market.methods.products(i).call()
+              this.setState({products: [...this.state.products,product]})
+              console.log(this.state.products)
+            }
           } else {
             alert('connect to a different Blockchain')
           }
@@ -38,28 +46,30 @@ constructor(props){
   super(props) 
     this.state = {
       account: '',
-      loading: true
+      loading: true,
+      productCount: 0,
+      products: ''
     }
 }
 
 
 
 createProduct = (name, price) => {
-  this.setState({loading: true})
+  //this.setState({loading: false})
   this.state.market.methods.listProduct(name, price).send({from: this.state.account })
-    .once('receipt', (receipt) => {
-      this.setState({ loading: false})
-    })
+  //.once('receipt', (receipt) => {
+  //  this.setState({loading: true})
+  //})
 }
 
-productCount = () => {
-  this.setState({loading: true})
-  const cant = this.state.market.methods.productCount().send({from: this.state.account })
-    .once('receipt', (receipt) => {
-      this.setState({ loading: false})
-    })
-    console.log(cant.toString())
+buyProduct = (id, price) => {
+  this.state.market.methods.buyProduct(id).send({from: this.state.account, value: price})
+  //.then('receipt', function(receipt){
+  //  // receipt example
+  //  console.log(receipt)
+  //})
 }
+
 
 
 
@@ -71,10 +81,14 @@ productCount = () => {
           <div className="row">
             <main role="main" className="col-lg-12 d-flex">
               {
-                this.state.loading ? <div id = "loader"><p>Loading....</p></div> : <Main createProduct = {this.createProduct}/>
+                this.state.loading 
+                ? <div id = "loader"><p>Loading....</p></div> 
+                : <Main 
+                  createProduct = {this.createProduct}
+                  products ={this.state.products}
+                  buyProduct={this.buyProduct}/>
               }
             </main>
-            <button onClick = {() => {this.productCount()}}>Cantidad de productos</button>
           </div>
         </div>
       </div>
