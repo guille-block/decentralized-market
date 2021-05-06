@@ -5,11 +5,11 @@ import './App.css';
 import Nav from './nav'
 import Main from './main'
 
-
 class App extends React.Component {
 
   componentDidMount = async () => {
     await this.loadBlockchain()
+    console.log(this.state.products)
   }
 
   loadBlockchain = async () => {
@@ -25,12 +25,13 @@ class App extends React.Component {
             const market = await web3.eth.Contract(Market.abi, Market.networks[netId].address)
             this.setState({market})
             const count = await market.methods.productCount().call()
+            console.log(count.toNumber())
             this.setState({productCount: count.toNumber()})
-            console.log(this.state.productCount)
-            for(var i=0; i<=count; i++){
+        
+            for(var i=1; i<=count; i++){
               const product = await market.methods.products(i).call()
+              console.log(product)
               this.setState({products: [...this.state.products,product]})
-              console.log(this.state.products)
             }
           } else {
             alert('connect to a different Blockchain')
@@ -52,22 +53,30 @@ constructor(props){
     }
 }
 
-
+callProducts = async () => {
+  const count = await this.state.market.methods.productCount().call()
+  this.setState({productCount: count.toNumber()})
+  for(var i=0; i<=count; i++){
+    const product = await this.state.market.methods.products(i).call()
+    this.setState({products: [...this.state.products,product]})
+    }
+}
 
 createProduct = (name, price) => {
-  //this.setState({loading: false})
+  this.setState({loading: true})
   this.state.market.methods.listProduct(name, price).send({from: this.state.account })
-  //.once('receipt', (receipt) => {
-  //  this.setState({loading: true})
-  //})
+    .once('transactionHash', (transactionHash) => {
+      this.setState({loading: false})
+      
+    })
 }
 
 buyProduct = (id, price) => {
+  this.setState({loading: true})
   this.state.market.methods.buyProduct(id).send({from: this.state.account, value: price})
-  //.then('receipt', function(receipt){
-  //  // receipt example
-  //  console.log(receipt)
-  //})
+  .once('transactionHash', (transactionHash) => {
+    this.setState({loading: false})
+  })
 }
 
 

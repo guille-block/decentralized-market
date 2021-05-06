@@ -1,5 +1,6 @@
 import React from 'react'
 import Web3 from 'web3'
+import './App.css'
 
 const Main = ({createProduct, products, buyProduct}) => {
 
@@ -7,7 +8,7 @@ const Main = ({createProduct, products, buyProduct}) => {
     let productName, productPrice
     
     return (
-        <div id= 'content'>
+        <div id= 'content' className ='conten-align-center'>
                 <h1>Welcome to Block Market</h1>
                 <h3>Add the product you want to sell</h3>
                 <form onSubmit = {e => {
