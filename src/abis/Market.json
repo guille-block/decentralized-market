@@ -5170,6 +5170,12 @@
       "links": {},
       "address": "0x6711466B89BaA982644f3B40720Bcca02D96134d",
       "transactionHash": "0x187f35874ed3b9afb30cb195f3c41849badb18cfa17a7fd4ac0e77a5644af0b4"
+    },
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x6694940a5d893ab2369eeb18af2cdf6c35f3b498",
+      "transactionHash": "0xc44858ea6c1fe968f90fa2b317900886fa0e7c0035aba299f9086a0f2955df4e"
     }
   },
   "schemaVersion": "3.2.5",

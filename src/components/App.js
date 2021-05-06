@@ -49,7 +49,7 @@ constructor(props){
       account: '',
       loading: true,
       productCount: 0,
-      products: ''
+      products: []
     }
 }
 
