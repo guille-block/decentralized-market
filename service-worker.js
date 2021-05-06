@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/decentralized-market/precache-manifest.0e7450253d1374ee5fb5d20284f82d60.js"
+  "/decentralized-market/precache-manifest.8e8ad701d40cc6df79eaf24e41264450.js"
 );
 
 workbox.clientsClaim();

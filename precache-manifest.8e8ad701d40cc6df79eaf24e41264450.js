@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/decentralized-market/static/js/runtime~main.076b4cf3.js"
   },
   {
-    "revision": "7edabeddf4b57954639e7a54bad4d9bb",
+    "revision": "34442dcf919cb4bbceca60274c931b08",
     "url": "/decentralized-market/index.html"
   }
 ];
